@@ -1,26 +1,30 @@
 require 'nokogiri'
 require 'open-uri'
 
-def get_the_email_of_a_townhal_from_its_webpage(url)
+def url_to_email(url)
   doc = Nokogiri::HTML(open("http://annuaire-des-mairies.com#{url}"))
 	doc.css('td')[7].text
 end
 
-def get_all_the_urls_of_val_doise_townhalls
+def get_urls
   doc = Nokogiri::HTML(open("http://annuaire-des-mairies.com/val-d-oise.html"))
   tab = doc.css('p > a').map { |link| link['href'] }
 end
 
-def get_all_the_email_of_val_doise_townhalls
-  res = []
+def annuaire
   doc = Nokogiri::HTML(open("http://annuaire-des-mairies.com/val-d-oise.html"))
+
   names = doc.css('p > a').map{ |name| name.text }
-  emails = get_all_the_urls_of_val_doise_townhalls.map{ |url| get_the_email_of_a_townhal_from_its_webpage(url) }
+  emails = get_urls.map{ |url| url_to_email(url) }
+
+  res = []
   names.length.times do |i|
     res += [{ "name" => names[i] , "email" => emails[i] }]
     i += 1
   end
+  
   return res
 end
 
-p get_all_the_email_of_val_doise_townhalls
+
+p annuaire

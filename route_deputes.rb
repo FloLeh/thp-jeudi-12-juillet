@@ -9,7 +9,7 @@ end
 
 def email_depute(url)
   doc = Nokogiri::HTML(open("http://www2.assemblee-nationale.fr#{url}"))
-  doc.css('dd')[3].css('ul > li > a').map{|link| link['href'][7..-1]}
+  doc.css('dd')[3].css('ul > li > a').map{|link| link['href'][7..-1]} #On retire les "mailto:"
 end
 
 
