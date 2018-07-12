@@ -13,11 +13,14 @@ def trader_obscure
   return res
 end
 
-t = Time.now
-
-while 0
-  t1 = Time.now
-  if t1.min == t.min && t1.sec == t.sec
-    p trader_obscure
+def refresh_each_hour
+  t = Time.now #Temps qui va rester figé
+  while 0
+    t1 = Time.now #Temps qui s'actualise
+    if t1.min == t.min && t1.sec == t.sec #Si les minutes et secondes sont égales
+      p trader_obscure                    #alors on est rendu à l'heure d'après
+    end
   end
 end
+
+refresh_each_hour
