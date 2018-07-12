@@ -13,4 +13,11 @@ def trader_obscure
   return res
 end
 
-p trader_obscure
+t = Time.now
+
+while 0
+  t1 = Time.now
+  if t1.min == t.min && t1.sec == t.sec
+    p trader_obscure
+  end
+end

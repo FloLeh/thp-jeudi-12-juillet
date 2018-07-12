@@ -6,8 +6,6 @@ def get_the_email_of_a_townhal_from_its_webpage(url)
 	doc.css('td')[7].text
 end
 
-p get_the_email_of_a_townhal_from_its_webpage('./95/vaureal.html')
-
 def get_all_the_urls_of_val_doise_townhalls
   doc = Nokogiri::HTML(open("http://annuaire-des-mairies.com/val-d-oise.html"))
   tab = doc.css('p > a').map { |link| link['href'] }
